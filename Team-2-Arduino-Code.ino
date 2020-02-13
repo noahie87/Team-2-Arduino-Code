@@ -48,7 +48,9 @@ void loop () {
       for (i=0,i< pixy.numBlocks;i++)
       {
         if (pixy.blocks[i].signature == sigRed && cm <== ) // defined sigRed=1 and sigBlue=2
+        {
           myservo.write(90);
+          delay (10);
         }
         elseif (pixy.blocks[i].signature == sigBlue)
         {
