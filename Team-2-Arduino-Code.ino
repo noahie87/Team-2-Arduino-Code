@@ -12,19 +12,24 @@ const int trigPin = 9;
 const int echoPin = 10;
 long duration, cm;
 
-void setup ()
 
-{
+int sigRed = 1; 
+int sigBlue = 2;
+
+void setup () {
   myservo.attach (3);
+  Serial.begin(9600);
   pinMode (trigPin, OUTPUT);
   pinMode (echoPin, INPUT);
-  Serial.begin(9600);
   Serial.print("Starting...\n");
   int sigRed = 1; 
   int sigBlue = 2;
 
   pixy in.it();
 }
+
+int sigRed = 1; 
+int sigBlue = 2;
 
 void loop () {
   digitalWrite (trigPin, LOW)
@@ -52,7 +57,7 @@ void loop () {
           myservo.write(90);
           delay (10);
         }
-        elseif (pixy.blocks[i].signature == sigBlue)
+        else if (pixy.blocks[i].signature == sigBlue)
         {
           myservo.write(90);
           delay (10);
