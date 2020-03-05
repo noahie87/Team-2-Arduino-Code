@@ -4,13 +4,13 @@
 #include <Servo.h>
 
 Servo myservo;
-Ultrasonic myultrasonic(12, 13);
+
 
 // Code for main pixy object
 Pixy2 pixy;
 
-const int trigPin = 9;
-const int echoPin = 10;
+const int trigPin = 5;
+const int echoPin = 6;
 long duration, cm;
 
 
@@ -46,24 +46,31 @@ void loop () {
 
   blocks = pixy.ccc.getBlocks();
 
+  myservo.write(90);
     if (pixy.ccc.numBlocks)
     {
       for (i=0;i< pixy.ccc.numBlocks;i++)
       {
-        if (pixy.ccc.blocks[i].Signature == sigRed && cm <== ) // defined sigRed=1 and sigBlue=2
+        if (pixy.ccc.blocks[i].m_signature == sigRed && 20 <= cm  && cm <= 50 ) // defined sigRed=1 and sigBlue=2
         {
-          myservo.write(90);
+          myservo.write(180);
+          Serial.println ("Red");
           delay (10);
         }
-        else if (pixy.ccc.blocks[i].Signature == sigBlue)
+        else if (pixy.ccc.blocks[i].m_signature == sigBlue && 20 <= cm && cm <= 50)
         {
-          myservo.write(90);
+          myservo.write(180);
+          Serial.println ("Blue");
           delay (10);
         }
-        
+        else 
+         {
+          myservo.write(90);
+          Serial.println ("Error");
+          delay (10);
+        }
+        }
+            
       }
+      pixy.ccc.blocks[i].print();
     }
-
-
-
-}
